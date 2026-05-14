@@ -171,3 +171,19 @@ def checkout(data: dict, db: Session = Depends(get_db)):
         "final_total": final_total,
         "message": "Gate pass automatically added to checkout"
     }
+
+
+@router.get("/market-gate-pass/{market_name}")
+def market_gate_pass(market_name: str, db: Session = Depends(get_db)):
+
+    market = db.query(ProductMarket).filter(
+        ProductMarket.name == market_name
+    ).first()
+
+    if not market:
+        raise HTTPException(status_code=404, detail="Market not found")
+
+    return {
+        "ai_message":
+        f"Bushmarket gate pass for {market.name} market is ₦{market.gate_pass_fee}. This fee will be added automatically during checkout."
+    }
