@@ -11,4 +11,3 @@ app = FastAPI(title="Bushmarket System")
 app.include_router(auth_router, prefix="/auth")
 app.include_router(user_router, prefix="/users")
 
-Base.metadata.create_all(bind=engine)
