@@ -1,8 +1,0 @@
-@router.get("/nearest/{category}")
-def nearest_market(category: str, current=Depends(get_current_user)):
-    return {
-        "category": category,
-        "location": "auto-detected LGA market",
-        "message": "Showing nearest market based on user LGA",
-        "products": []
-    }
