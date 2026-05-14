@@ -1,0 +1,19 @@
+@router.get("/gallery")
+def commodity_gallery():
+    return {
+        "markets": [
+            "Rice Market",
+            "Palm Oil Market",
+            "Beans Market",
+            "Fish Market",
+            "Yam and Potatoes Market",
+            "Cocoa Market",
+            "Ogbono & Egusi Market",
+            "Groundnut Market",
+            "Honey Market",
+            "Natural Spices Market",
+            "Garri Market",
+            "Maize Market",
+            "Ginger Market"
+        ]
+    }
