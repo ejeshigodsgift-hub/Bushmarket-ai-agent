@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-
+from db.models import ProductMarket
 from db.database import get_db
 from db.models import Product
 from auth.dependencies import get_current_user
@@ -140,3 +140,34 @@ class Product(Base):
     image_url = Column(String)
     location = Column(String)  # LGA or market zone
     available_qty = Column(Float)
+
+
+@router.post("/checkout")
+def checkout(data: dict, db: Session = Depends(get_db)):
+
+    market = db.query(ProductMarket).filter(
+        ProductMarket.name == data["market_name"]
+    ).first()
+
+    if not market:
+        raise HTTPException(status_code=404, detail="Market not found")
+
+    product_total = data["product_total"]
+    delivery_fee = data["delivery_fee"]
+
+    gate_pass_fee = market.gate_pass_fee
+
+    final_total = (
+        product_total
+        + delivery_fee
+        + gate_pass_fee
+    )
+
+    return {
+        "market": market.name,
+        "product_total": product_total,
+        "delivery_fee": delivery_fee,
+        "gate_pass_fee": gate_pass_fee,
+        "final_total": final_total,
+        "message": "Gate pass automatically added to checkout"
+    }
