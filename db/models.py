@@ -48,3 +48,10 @@ class Cooperative(Base):
     max_members = Column(Integer)
     contribution_per_member = Column(Float)
     status = Column(String, default="funding")
+
+class ProductMarket(Base):
+    __tablename__ = "product_markets"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, unique=True)
+    gate_pass_fee = Column(Float, default=0.0)
