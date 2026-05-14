@@ -4,6 +4,7 @@ from db.models import Cooperative
 from db.database import get_db
 from db.models import Product
 from db.models import Wallet
+from db.models import ProductMarket
 from auth.dependencies import get_current_user
 
 router = APIRouter()
@@ -122,6 +123,27 @@ def admin_dashboard():
         "pending_products": [],
         "wallet_activity": [],
         "alerts": []
+    }
+
+
+@router.post("/update-gate-pass")
+def update_gate_pass(data: dict, db: Session = Depends(get_db)):
+
+    market = db.query(ProductMarket).filter(
+        ProductMarket.name == data["market_name"]
+    ).first()
+
+    if not market:
+        raise HTTPException(status_code=404, detail="Market not found")
+
+    market.gate_pass_fee = data["gate_pass_fee"]
+
+    db.commit()
+
+    return {
+        "message": "Gate pass updated successfully",
+        "market": market.name,
+        "gate_pass_fee": market.gate_pass_fee
     }
 
 
