@@ -26,3 +26,17 @@ class ApiService {
     return jsonDecode(res.body);
   }
 }
+
+
+static Future login(String username, String password) async {
+  final res = await http.post(
+    Uri.parse("$baseUrl/auth/login"),
+    body: jsonEncode({
+      "username": username,
+      "password": password
+    }),
+    headers: {"Content-Type": "application/json"},
+  );
+
+  return jsonDecode(res.body);
+}
