@@ -25,3 +25,17 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+
+Scaffold(
+  appBar: AppBar(title: Text("Bushmarket")),
+  body: GridView.count(
+    crossAxisCount: 2,
+    children: [
+      menu("Markets", "/market"),
+      menu("Cooperatives", "/coop"),
+      menu("Wallet", "/wallet"),
+      menu("AI Chat", "/ai"),
+    ],
+  ),
+);
