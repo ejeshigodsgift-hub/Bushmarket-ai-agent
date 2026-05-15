@@ -9,48 +9,13 @@ class CooperativeScreen extends StatelessWidget {
         children: [
           Text("Join or Create Cooperative"),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              // open create coop screen
+            },
             child: Text("Create Cooperative"),
-          )
+          ),
         ],
       ),
     );
   }
 }
-
-
-static Future createCoop(data, token) async {
-  final res = await http.post(
-    Uri.parse("$baseUrl/cooperative/create"),
-    body: jsonEncode(data),
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer $token"
-    },
-  );
-
-  return jsonDecode(res.body);
-}
-
-
-static Future joinCoop(int id, token) async {
-  final res = await http.post(
-    Uri.parse("$baseUrl/cooperative/join/$id"),
-    headers: {
-      "Authorization": "Bearer $token"
-    },
-  );
-
-  return jsonDecode(res.body);
-}
-
-
-ListView(
-  children: [
-    Text("Active Cooperatives"),
-    ElevatedButton(
-      onPressed: () => createCoop(),
-      child: Text("Create Cooperative"),
-    ),
-  ],
-);
