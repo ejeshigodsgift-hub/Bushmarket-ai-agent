@@ -21,3 +21,12 @@ class AIChatScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+TextField(
+  onSubmitted: (msg) {
+    sendToBackend(msg);
+  },
+  decoration: InputDecoration(hintText: "Ask Bushmarket AI"),
+)
