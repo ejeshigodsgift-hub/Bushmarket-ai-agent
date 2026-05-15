@@ -17,3 +17,14 @@ class WalletScreen extends StatelessWidget {
     );
   }
 }
+
+
+Column(
+  children: [
+    Text("Balance: ₦0"),
+    ElevatedButton(
+      onPressed: () => deposit(),
+      child: Text("Deposit"),
+    ),
+  ],
+);
