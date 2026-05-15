@@ -31,3 +31,15 @@ static Future createCoop(data, token) async {
 
   return jsonDecode(res.body);
 }
+
+
+static Future joinCoop(int id, token) async {
+  final res = await http.post(
+    Uri.parse("$baseUrl/cooperative/join/$id"),
+    headers: {
+      "Authorization": "Bearer $token"
+    },
+  );
+
+  return jsonDecode(res.body);
+}
