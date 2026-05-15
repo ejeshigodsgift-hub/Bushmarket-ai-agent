@@ -43,3 +43,14 @@ static Future joinCoop(int id, token) async {
 
   return jsonDecode(res.body);
 }
+
+
+ListView(
+  children: [
+    Text("Active Cooperatives"),
+    ElevatedButton(
+      onPressed: () => createCoop(),
+      child: Text("Create Cooperative"),
+    ),
+  ],
+);
