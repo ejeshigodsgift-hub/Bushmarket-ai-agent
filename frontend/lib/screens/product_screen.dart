@@ -18,3 +18,20 @@ class ProductScreen extends StatelessWidget {
     );
   }
 }
+
+
+ListView.builder(
+  itemCount: products.length,
+  itemBuilder: (context, index) {
+    return Card(
+      child: Column(
+        children: [
+          Image.network(products[index]["image"]),
+          Text(products[index]["name"]),
+          Text("₦${products[index]["price"]}"),
+          Text(products[index]["unit"]),
+        ],
+      ),
+    );
+  },
+);
