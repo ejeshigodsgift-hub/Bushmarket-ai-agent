@@ -40,3 +40,28 @@ static Future login(String username, String password) async {
 
   return jsonDecode(res.body);
 }
+
+
+static Future getProducts(String category) async {
+  final res = await http.get(
+    Uri.parse("$baseUrl/market/$category"),
+  );
+
+  return jsonDecode(res.body);
+}
+
+
+static Future checkout(data, token) async {
+  final res = await http.post(
+    Uri.parse("$baseUrl/market/checkout"),
+    body: jsonEncode(data),
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $token"
+    },
+  );
+
+  return jsonDecode(res.body);
+}
+
+
