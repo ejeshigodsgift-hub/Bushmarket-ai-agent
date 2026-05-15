@@ -26,3 +26,13 @@ class MarketScreen extends StatelessWidget {
     );
   }
 }
+
+
+FutureBuilder(
+  future: ApiService.getProducts("Rice"),
+  builder: (context, snapshot) {
+    return ListView(
+      children: snapshot.data.map((p) => productCard(p)).toList(),
+    );
+  },
+);
