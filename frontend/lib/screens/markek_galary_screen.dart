@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MarketScreen extends StatelessWidget {
+class MarketGalleryScreen extends StatelessWidget {
   final markets = [
     "Rice Market",
     "Palm Oil Market",
@@ -18,7 +18,11 @@ class MarketScreen extends StatelessWidget {
           return ListTile(
             title: Text(markets[index]),
             onTap: () {
-              Navigator.pushNamed(context, "/products");
+              Navigator.pushNamed(
+                context,
+                "/products",
+                arguments: markets[index],
+              );
             },
           );
         },
@@ -26,13 +30,3 @@ class MarketScreen extends StatelessWidget {
     );
   }
 }
-
-
-FutureBuilder(
-  future: ApiService.getProducts("Rice"),
-  builder: (context, snapshot) {
-    return ListView(
-      children: snapshot.data.map((p) => productCard(p)).toList(),
-    );
-  },
-);
