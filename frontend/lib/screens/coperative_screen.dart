@@ -17,3 +17,17 @@ class CooperativeScreen extends StatelessWidget {
     );
   }
 }
+
+
+static Future createCoop(data, token) async {
+  final res = await http.post(
+    Uri.parse("$baseUrl/cooperative/create"),
+    body: jsonEncode(data),
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $token"
+    },
+  );
+
+  return jsonDecode(res.body);
+}
