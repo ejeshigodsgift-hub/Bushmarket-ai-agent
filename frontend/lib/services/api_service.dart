@@ -65,3 +65,4 @@ static Future checkout(data, token) async {
 }
 
 
+static const baseUrl = "https://your-railway-app.up.railway.app";
