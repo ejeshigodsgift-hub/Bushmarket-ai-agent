@@ -5,12 +5,24 @@ class CooperativeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Cooperatives")),
-      body: Column(
+
+      body: ListView(
+        padding: EdgeInsets.all(16),
+
         children: [
-          Text("Join or Create Cooperative"),
+          Text(
+            "Active Cooperatives",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          SizedBox(height: 20),
+
           ElevatedButton(
             onPressed: () {
-              // open create coop screen
+              // call CoopService.createCoop()
             },
             child: Text("Create Cooperative"),
           ),
